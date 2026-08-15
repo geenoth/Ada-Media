@@ -13,41 +13,37 @@ interface FAQProps {
 
 const FAQList: FAQProps[] = [
   {
-    question: "Is this template free?",
-    answer: "Yes. It is a free NextJS Shadcn template.",
+    question: "What is Ada Media?",
+    answer: "Ada Media is Sri Lanka's most trusted real-time news provider, delivering fast, verified, and engaging video news updates.",
     value: "item-1",
   },
   {
-    question: "Duis aute irure dolor in reprehenderit in voluptate velit?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint labore quidem quam consectetur sapiente, iste rerum reiciendis animi nihil nostrum sit quo, modi quod.",
+    question: "How does Ada Media verify its news?",
+    answer: "Every headline, image, and body text is cross-referenced with multiple independent primary sources before production.",
     value: "item-2",
   },
   {
-    question:
-      "Lorem ipsum dolor sit amet Consectetur natus dolor minus quibusdam?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore qui nostrum reiciendis veritatis.",
+    question: "Do you use clickbait headlines?",
+    answer: "No. Our news is structured with precise, factual Sinhala headlines and objective descriptions without sensationalist exaggeration.",
     value: "item-3",
   },
   {
-    question: "Excepteur sint occaecat cupidata non proident sunt?",
-    answer: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
+    question: "What happens if there is an error in a report?",
+    answer: "We issue prompt, transparent updates in our video captions and pin the corrected information immediately.",
     value: "item-4",
   },
   {
-    question:
-      "Enim ad minim veniam, quis nostrud exercitation ullamco laboris?",
-    answer: "consectetur adipisicing elit. Sint labore.",
+    question: "How can I send a news tip to Ada Media?",
+    answer: "You can reach out to us via our Contact section below or email us directly at contact@adamedia.lk.",
     value: "item-5",
   },
 ];
 
 export const FAQSection = () => {
   return (
-    <section id="faq" className="container md:w-[700px] py-24 sm:py-32">
+    <section id="faq" className="container md:w-[700px] py-12 md:py-16">
       <div className="text-center mb-8">
-        <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
+        <h2 className="text-lg text-[#ac0006] text-center mb-2 tracking-wider">
           FAQS
         </h2>
 
