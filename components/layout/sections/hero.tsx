@@ -46,10 +46,9 @@ export const HeroSection = () => {
               className="w-5/6 md:w-1/4 font-bold"
             >
               <Link
-                href="https://github.com/nobruf/shadcn-landing-page.git"
-                target="_blank"
+                href="#"
               >
-                Github respository
+                Github repository
               </Link>
             </Button>
           </div>

@@ -105,11 +105,10 @@ export const FooterSection = () => {
           <h3 className="">
             &copy; 2024 Designed and developed by
             <Link
-              target="_blank"
-              href="https://github.com/leoMirandaa"
+              href="#"
               className="text-primary transition-all border-primary hover:border-b-2 ml-1"
             >
-              Leo Miranda
+              Your Name
             </Link>
           </h3>
         </section>
