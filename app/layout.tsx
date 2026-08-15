@@ -9,8 +9,8 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shadcn - Landing template",
-  description: "Landing template from Shadcn",
+  title: "Ada Media | Real-Time News",
+  description: "Sri Lanka's Most Trusted Real-Time News Provider. Watch our highly produced daily video reports.",
 };
 
 export default function RootLayout({

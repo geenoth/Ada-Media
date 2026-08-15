@@ -6,29 +6,29 @@ import { ReelFeed } from "@/components/reel-feed";
 import { TrustSection } from "@/components/trust";
 
 export const metadata = {
-  title: "Shadcn - Landing template",
-  description: "Free Shadcn landing page for developers",
+  title: "Ada Media | Real-Time News",
+  description: "Sri Lanka's Most Trusted Real-Time News Provider",
   openGraph: {
     type: "website",
-    url: "https://github.com/nobruf/shadcn-landing-page.git",
-    title: "Shadcn - Landing template",
-    description: "Free Shadcn landing page for developers",
+    url: "https://adamedia.lk",
+    title: "Ada Media | Real-Time News",
+    description: "Sri Lanka's Most Trusted Real-Time News Provider",
     images: [
       {
-        url: "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/shadcn-vue.jpg",
+        url: "https://adamedia.lk/logo.png",
         width: 1200,
         height: 630,
-        alt: "Shadcn - Landing template",
+        alt: "Ada Media - Real-Time News",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "https://github.com/nobruf/shadcn-landing-page.git",
-    title: "Shadcn - Landing template",
-    description: "Free Shadcn landing page for developers",
+    site: "https://adamedia.lk",
+    title: "Ada Media | Real-Time News",
+    description: "Sri Lanka's Most Trusted Real-Time News Provider",
     images: [
-      "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/shadcn-vue.jpg",
+      "https://adamedia.lk/logo.png",
     ],
   },
 };
