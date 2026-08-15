@@ -77,7 +77,38 @@ const featureList: FeatureProps[] = [
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState("");
   const { language, setLanguage } = useLanguage();
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      // Only track the sections actually in the nav menu to prevent conflicts
+      const sections = ["reels", "trust", "contact"];
+      let currentActive = "";
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Trigger when the section reaches the upper 70% of the screen
+          if (rect.top <= window.innerHeight * 0.7) {
+            currentActive = `#${section}`;
+          }
+        }
+      }
+
+      // Edge case: If the user scrolls to the absolute bottom of the page, force the last section to be active
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        currentActive = "#contact";
+      }
+
+      setActiveSection(currentActive);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const t = locales[language];
 
   const toggleLanguage = () => {
@@ -127,7 +158,11 @@ export const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     asChild
                     variant="ghost"
-                    className="justify-start text-base"
+                    className={`justify-start text-base transition-colors ${
+                      activeSection === href 
+                        ? "text-[#ac0006] font-bold bg-[#ac0006]/10" 
+                        : "hover:text-[#8f0909]"
+                    }`}
                   >
                     <Link href={href}>{label}</Link>
                   </Button>
@@ -155,7 +190,14 @@ export const Navbar = () => {
           <NavigationMenuItem>
             {dynamicRouteList.map(({ href, label }) => (
               <NavigationMenuLink key={label} asChild>
-                <Link href={href} className="text-base px-2">
+                <Link 
+                  href={href} 
+                  className={`text-base px-4 py-2 rounded-md transition-colors ${
+                    activeSection === href 
+                      ? "text-[#ac0006] font-bold" 
+                      : "text-foreground/80 hover:text-[#8f0909]"
+                  }`}
+                >
                   {label}
                 </Link>
               </NavigationMenuLink>

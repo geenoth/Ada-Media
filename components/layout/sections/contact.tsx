@@ -5,7 +5,6 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Building2, Clock, Mail, Phone } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -63,63 +62,19 @@ export const ContactSection = () => {
 
   return (
     <section id="contact" className="container py-12 md:py-16">
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <div className="mb-4">
-            <h2 className="text-lg text-[#ac0006] mb-2 tracking-wider">
-              {t.navContact}
-            </h2>
+      <div className="text-center mb-12">
+        <h2 className="text-lg text-[#ac0006] mb-2 tracking-wider font-semibold uppercase">
+          {t.navContact}
+        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.contactTitle}</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          {t.contactDesc}
+        </p>
+      </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold">{t.contactTitle}</h2>
-          </div>
-          <p className="mb-8 text-muted-foreground lg:w-5/6">
-            {t.contactDesc}
-          </p>
-
-          <div className="flex flex-col gap-4">
-            <div>
-              <div className="flex gap-2 mb-1">
-                <Building2 />
-                <div className="font-bold">Find us</div>
-              </div>
-
-              <div>Colombo, Sri Lanka</div>
-            </div>
-
-            <div>
-              <div className="flex gap-2 mb-1">
-                <Phone />
-                <div className="font-bold">Call us</div>
-              </div>
-
-              <div>+94 11 123 4567</div>
-            </div>
-
-            <div>
-              <div className="flex gap-2 mb-1">
-                <Mail className="text-[#ac0006]" />
-                <div className="font-bold">Mail Us</div>
-              </div>
-
-              <div>contact@adamedia.lk</div>
-            </div>
-
-            <div>
-              <div className="flex gap-2">
-                <Clock />
-                <div className="font-bold">Visit us</div>
-              </div>
-
-              <div>
-                <div>Monday - Friday</div>
-                <div>8AM - 4PM</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <Card className="bg-muted/60 dark:bg-card">
-          <CardHeader className="text-primary text-2xl"> </CardHeader>
+      <div className="max-w-5xl mx-auto">
+        <Card className="bg-muted/60 dark:bg-card shadow-lg">
+          <CardHeader className="text-primary text-2xl" />
           <CardContent>
             <Form {...form}>
               <form
@@ -132,7 +87,7 @@ export const ContactSection = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem className="w-full">
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel>{t.formFirstName}</FormLabel>
                         <FormControl>
                           <Input placeholder="John" {...field} />
                         </FormControl>
@@ -145,7 +100,7 @@ export const ContactSection = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem className="w-full">
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel>{t.formLastName}</FormLabel>
                         <FormControl>
                           <Input placeholder="Doe" {...field} />
                         </FormControl>
@@ -155,13 +110,13 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col md:!flex-row gap-8">
                   <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
+                      <FormItem className="w-full">
+                        <FormLabel>{t.formEmail}</FormLabel>
                         <FormControl>
                           <Input
                             type="email"
@@ -173,22 +128,20 @@ export const ContactSection = () => {
                       </FormItem>
                     )}
                   />
-                </div>
 
-                <div className="flex flex-col gap-1.5">
                   <FormField
                     control={form.control}
                     name="subject"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Subject</FormLabel>
+                      <FormItem className="w-full">
+                        <FormLabel>{t.formSubject}</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select a subject" />
+                              <SelectValue placeholder={t.formSubject} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -216,11 +169,11 @@ export const ContactSection = () => {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel>{t.formMessage}</FormLabel>
                         <FormControl>
                           <Textarea
                             rows={5}
-                            placeholder="Your message..."
+                            placeholder="..."
                             className="resize-none"
                             {...field}
                           />
@@ -232,14 +185,14 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <Button className="mt-4 bg-[#ac0006] hover:bg-[#8f0909] text-white">Send message</Button>
+                <Button className="mt-4 bg-[#ac0006] hover:bg-[#8f0909] text-white">{t.formSend}</Button>
               </form>
             </Form>
           </CardContent>
 
           <CardFooter></CardFooter>
         </Card>
-      </section>
+      </div>
     </section>
   );
 };

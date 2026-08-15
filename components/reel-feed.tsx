@@ -1,14 +1,20 @@
 "use client";
 
+import { useLanguage } from "@/app/providers";
+import { locales } from "@/lib/locales";
+
 export const ReelFeed = () => {
+  const { language } = useLanguage();
+  const t = locales[language];
+
   return (
     <section id="reels" className="container py-12 md:py-16">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold tracking-tight mb-4">
-          Latest <span className="text-transparent bg-gradient-to-r from-[#ac0006] to-[#8f0909] bg-clip-text">News</span>
+          {t.reelSectionTitle1} <span className="text-transparent bg-gradient-to-r from-[#ac0006] to-[#8f0909] bg-clip-text">{t.reelSectionTitleHighlight}</span>
         </h2>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Watch our highly produced daily video reports directly on our feed.
+          {t.reelSectionDesc}
         </p>
       </div>
       
@@ -31,6 +37,8 @@ export const ReelFeed = () => {
             title="Ada Media Facebook Feed"
           />
         </div>
+        {/* Fallback text visible only before the widget loads over it */}
+        <span className="absolute text-muted-foreground -z-10">{t.loadingWidget}</span>
       </div>
     </section>
   );
