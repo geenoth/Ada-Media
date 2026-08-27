@@ -241,7 +241,7 @@ export const ReelFeed = () => {
   };
 
   return (
-    <section id="reels" className="container py-12 md:py-16">
+    <section id="reels" className="container pt-4 pb-12 md:pt-8 md:pb-16">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold tracking-tight mb-4">
           {t.reelSectionTitle1} <span className="text-transparent bg-gradient-to-r from-[#ac0006] to-[#8f0909] bg-clip-text">{t.reelSectionTitleHighlight}</span>
@@ -255,8 +255,16 @@ export const ReelFeed = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] md:w-[60%] h-[200px] bg-gradient-to-r from-[#ac0006]/40 to-[#8f0909]/40 blur-[120px] rounded-full -z-10" />
 
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#ac0006]"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden border border-[#ac0006]/10 bg-card/20 backdrop-blur-sm flex flex-col aspect-[9/16] animate-pulse relative">
+                <div className="w-full h-full bg-muted/10 dark:bg-muted/20" />
+                <div className="absolute bottom-0 left-0 w-full p-5 bg-gradient-to-t from-black/80 to-transparent flex flex-col gap-2">
+                  <div className="h-4 bg-white/20 rounded-md w-3/4" />
+                  <div className="h-4 bg-white/20 rounded-md w-1/2" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : error ? (
           <div className="text-center text-red-500 py-12">
