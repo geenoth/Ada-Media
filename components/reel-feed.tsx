@@ -18,6 +18,8 @@ export const ReelFeed = () => {
   const [reels, setReels] = useState<Reel[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [nextPageCursor, setNextPageCursor] = useState<string | null>(null);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     const fetchReels = async () => {
@@ -27,6 +29,11 @@ export const ReelFeed = () => {
           const data = await response.json();
           if (data.data) {
             setReels(data.data);
+            if (data.paging?.cursors?.after && data.paging?.next) {
+              setNextPageCursor(data.paging.cursors.after);
+            } else {
+              setNextPageCursor(null);
+            }
           } else {
             setError("No data received from API.");
           }
@@ -43,6 +50,29 @@ export const ReelFeed = () => {
     };
     fetchReels();
   }, []);
+
+  const loadMore = async () => {
+    if (!nextPageCursor) return;
+    setLoadingMore(true);
+    try {
+      const response = await fetch(`/api/reels?after=${nextPageCursor}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.data) {
+          setReels(prev => [...prev, ...data.data]);
+          if (data.paging?.cursors?.after && data.paging?.next) {
+            setNextPageCursor(data.paging.cursors.after);
+          } else {
+            setNextPageCursor(null);
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Failed to load more reels", err);
+    } finally {
+      setLoadingMore(false);
+    }
+  };
 
   return (
     <section id="reels" className="container py-12 md:py-16">
@@ -95,6 +125,26 @@ export const ReelFeed = () => {
         ) : (
           <div className="text-center text-muted-foreground py-12">
             {t.loadingWidget || "No reels available at the moment."}
+          </div>
+        )}
+        
+        {/* Pagination Button */}
+        {nextPageCursor && reels.length > 0 && !loading && !error && (
+          <div className="mt-12 flex justify-center">
+            <button 
+              onClick={loadMore} 
+              disabled={loadingMore}
+              className="px-8 py-3 rounded-full bg-[#ac0006] hover:bg-[#8f0909] text-white font-medium transition-colors disabled:opacity-70 flex items-center gap-2"
+            >
+              {loadingMore ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Loading...
+                </>
+              ) : (
+                "See More Reels"
+              )}
+            </button>
           </div>
         )}
       </div>
