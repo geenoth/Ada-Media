@@ -18,7 +18,7 @@ export const HeroSection = () => {
       {/* Background Gradient Glow */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[80%] md:w-[60%] h-[400px] bg-[#ac0006]/20 blur-[100px] rounded-full -z-10 pointer-events-none"></div>
       
-      <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto pt-16 pb-12 md:pt-24 md:pb-16 relative z-10">
+      <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto pt-16 pb-4 md:pt-24 md:pb-8 relative z-10">
         <div className="text-center space-y-8">
           <Badge variant="outline" className="text-sm py-2">
             <span className="mr-2 text-[#ac0006]">
