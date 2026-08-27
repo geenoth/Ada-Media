@@ -2,6 +2,44 @@ import { Metadata, ResolvingMetadata } from 'next';
 import Script from 'next/script';
 import Home from '@/app/page';
 
+export async function generateStaticParams() {
+  const pageId = process.env.FACEBOOK_PAGE_ID;
+  const token = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
+
+  if (!pageId || !token) {
+    return [];
+  }
+
+  try {
+    const url = `https://graph.facebook.com/v19.0/${pageId}/video_reels?fields=id&limit=50&access_token=${token}`;
+    const res = await fetch(url);
+    if (!res.ok) {
+        // Fallback for token exchange to ensure build succeeds
+        const exchangeUrl = `https://graph.facebook.com/v19.0/${pageId}?fields=access_token&access_token=${token}`;
+        const exchangeRes = await fetch(exchangeUrl);
+        const exchangeData = await exchangeRes.json();
+        if (exchangeData.access_token) {
+           const newUrl = `https://graph.facebook.com/v19.0/${pageId}/video_reels?fields=id&limit=50&access_token=${exchangeData.access_token}`;
+           const newRes = await fetch(newUrl);
+           const newData = await newRes.json();
+           if (newData.data) {
+             return newData.data.map((reel: any) => ({ id: reel.id }));
+           }
+        }
+        return [];
+    }
+    
+    const data = await res.json();
+    if (!data.data) return [];
+    
+    return data.data.map((reel: any) => ({
+      id: reel.id,
+    }));
+  } catch (error) {
+    return [];
+  }
+}
+
 export async function generateMetadata(
   { params }: { params: { id: string } },
   parent: ResolvingMetadata

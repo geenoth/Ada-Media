@@ -151,7 +151,6 @@ export const ReelFeed = () => {
       setIsCaptionExpanded(false); // reset caption expansion
       if (videoRef.current) {
         videoRef.current.currentTime = 0;
-        videoRef.current.muted = isMuted;
       }
       
       // Shallow route update for SEO and Sharing
