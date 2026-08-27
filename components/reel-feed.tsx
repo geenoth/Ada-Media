@@ -10,6 +10,13 @@ type Reel = {
   source: string;
   picture: string;
   permalink_url: string;
+  thumbnails?: {
+    data: {
+      height: number;
+      width: number;
+      uri: string;
+    }[];
+  };
 };
 
 const truncateText = (text: string, maxWords: number = 8) => {
@@ -19,6 +26,17 @@ const truncateText = (text: string, maxWords: number = 8) => {
     return words.slice(0, maxWords).join(" ") + "... see more";
   }
   return text;
+};
+
+// Facebook's signed URLs cannot be manually modified or they throw a 403 error.
+// Instead, we use the 'thumbnails' array requested from the API to get the highest resolution available.
+const getHighResPicture = (reel: Reel) => {
+  if (reel.thumbnails && reel.thumbnails.data && reel.thumbnails.data.length > 0) {
+    // Sort by height to get the highest quality thumbnail
+    const sorted = [...reel.thumbnails.data].sort((a, b) => b.height - a.height);
+    return sorted[0].uri;
+  }
+  return reel.picture;
 };
 
 export const ReelFeed = () => {
@@ -214,7 +232,7 @@ export const ReelFeed = () => {
                 className="group cursor-pointer relative rounded-2xl overflow-hidden border border-[#ac0006]/20 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-[#ac0006]/60 hover:shadow-[0_0_40px_-15px_rgba(172,0,6,0.5)] flex flex-col aspect-[9/16]"
               >
                 <img
-                  src={reel.picture}
+                  src={getHighResPicture(reel)}
                   alt={reel.description || "Reel Thumbnail"}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -314,7 +332,7 @@ export const ReelFeed = () => {
               key={selectedReel.id} // Forces video element to remount and autoplay new source
               ref={videoRef}
               src={selectedReel.source}
-              poster={selectedReel.picture}
+              poster={getHighResPicture(selectedReel)}
               autoPlay
               loop
               playsInline

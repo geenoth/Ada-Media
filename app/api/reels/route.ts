@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const paginationQuery = after ? `&after=${after}` : '';
 
     // Attempt 1: Try to fetch reels directly (assuming token is a Page Token)
-    let url = `https://graph.facebook.com/v19.0/${pageId}/video_reels?fields=id,description,created_time,source,picture,permalink_url&limit=12${paginationQuery}&access_token=${token}`;
+    let url = `https://graph.facebook.com/v19.0/${pageId}/video_reels?fields=id,description,created_time,source,picture,thumbnails,permalink_url&limit=12${paginationQuery}&access_token=${token}`;
     let res = await fetch(url, { next: { revalidate: 3600 } });
     let data = await res.json();
 
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
       if (exchangeData.access_token) {
         // Success! Use the newly retrieved Page Token
         token = exchangeData.access_token;
-        url = `https://graph.facebook.com/v19.0/${pageId}/video_reels?fields=id,description,created_time,source,picture,permalink_url&limit=12${paginationQuery}&access_token=${token}`;
+        url = `https://graph.facebook.com/v19.0/${pageId}/video_reels?fields=id,description,created_time,source,picture,thumbnails,permalink_url&limit=12${paginationQuery}&access_token=${token}`;
         res = await fetch(url, { next: { revalidate: 3600 } });
         data = await res.json();
       } else {
