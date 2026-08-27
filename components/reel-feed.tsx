@@ -71,6 +71,37 @@ export const ReelFeed = () => {
             } else {
               setNextPageCursor(null);
             }
+            
+            // Check for deep link
+            const match = window.location.pathname.match(/\/news\/(\d+)/);
+            if (match && match[1]) {
+              const reelId = match[1];
+              const targetReel = data.data.find((r: Reel) => r.id === reelId);
+              if (targetReel) {
+                setSelectedReel(targetReel);
+              } else {
+                // Fetch specific reel if not in the first page
+                try {
+                  const singleRes = await fetch(`/api/reels?id=${reelId}`);
+                  if (singleRes.ok) {
+                    const singleData = await singleRes.json();
+                    if (singleData.data && singleData.data[0]) {
+                      setReels(prev => {
+                        // Avoid duplicates if it somehow exists
+                        if (!prev.find(r => r.id === singleData.data[0].id)) {
+                          return [singleData.data[0], ...prev];
+                        }
+                        return prev;
+                      });
+                      setSelectedReel(singleData.data[0]);
+                    }
+                  }
+                } catch (e) {
+                  console.error("Failed to fetch deep linked reel");
+                }
+              }
+            }
+            
           } else {
             setError("No data received from API.");
           }
@@ -111,7 +142,7 @@ export const ReelFeed = () => {
     }
   };
 
-  // Prevent main page scrolling when modal is open
+  // Prevent main page scrolling when modal is open and handle shallow routing
   useEffect(() => {
     if (selectedReel) {
       document.body.style.overflow = "hidden";
@@ -122,8 +153,18 @@ export const ReelFeed = () => {
         videoRef.current.currentTime = 0;
         videoRef.current.muted = isMuted;
       }
+      
+      // Shallow route update for SEO and Sharing
+      if (window.location.pathname !== `/news/${selectedReel.id}`) {
+        window.history.pushState(null, '', `/news/${selectedReel.id}`);
+      }
     } else {
       document.body.style.overflow = "auto";
+      
+      // Revert URL when closing modal
+      if (window.location.pathname.startsWith('/news/')) {
+        window.history.pushState(null, '', '/');
+      }
     }
     return () => {
       document.body.style.overflow = "auto";
