@@ -15,7 +15,7 @@ export const metadata = {
     description: "Sri Lanka's Most Trusted Real-Time News Provider",
     images: [
       {
-        url: "https://adamedia.lk/logo.png",
+        url: "https://adamedia.lk/Ada%20Media%20News.png",
         width: 1200,
         height: 630,
         alt: "Ada Media - Real-Time News",
@@ -28,7 +28,7 @@ export const metadata = {
     title: "Ada Media | Real-Time News",
     description: "Sri Lanka's Most Trusted Real-Time News Provider",
     images: [
-      "https://adamedia.lk/logo.png",
+      "https://adamedia.lk/Ada%20Media%20News.png",
     ],
   },
 };

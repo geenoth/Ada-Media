@@ -3,6 +3,7 @@
 import { Separator } from "@/components/ui/separator";
 import { ChevronsDownIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/app/providers";
 import { locales } from "@/lib/locales";
 
@@ -15,9 +16,9 @@ export const FooterSection = () => {
       <div className="p-10 bg-card border border-secondary rounded-2xl">
         <div className="flex flex-col md:flex-row justify-between gap-x-12 gap-y-8">
           <div className="flex flex-col gap-3">
-            <Link href="#" className="flex font-bold items-center">
-              <ChevronsDownIcon className="w-12 h-12 mr-3 bg-gradient-to-tr from-[#ac0006] via-[#ac0006]/70 to-[#ac0006] rounded-xl border border-secondary text-white p-1" />
-              <h3 className="text-3xl">අද Media</h3>
+            <Link href="/" className="flex font-bold items-center">
+              <Image src="/Ada Media News.png" alt="Ada Media Logo" width={64} height={64} className="w-16 h-16 mr-3 object-contain" />
+              <h3 className="text-3xl">AdaMedia.lk</h3>
             </Link>
             <div className="opacity-60 font-medium ml-1">
               {t.footerLocation}
