@@ -8,7 +8,7 @@ export const locales = {
     heroTitle1: "Sri Lanka's Most Trusted",
     heroTitleHighlight: "Real-Time News",
     heroTitle2: "Provider",
-    heroDesc: "Ada Media delivers fast, verified, and engaging news updates directly to your feed. Stay informed with our highly produced daily video reports.",
+    heroDesc: "Ada Media delivers fast, verified, and accurate news updates directly to your feed. Stay informed with our highly produced daily video reports.",
     viewLatestReels: "Watch Latest News",
     trustTitle: "Why You Can Trust Ada Media",
     trustDesc: "In an era of rapid information and digital fabrications, Ada Media stands as a beacon of journalistic integrity in Sri Lanka. Our commitment to accuracy is absolute.",
@@ -39,7 +39,7 @@ export const locales = {
     faqs: [
       {
         question: "What is Ada Media?",
-        answer: "Ada Media is Sri Lanka's most trusted real-time news provider, delivering fast, verified, and engaging video news updates."
+        answer: "Ada Media is Sri Lanka's most trusted real-time news provider, delivering fast, verified, and accurate video news updates."
       },
       {
         question: "How does Ada Media verify its news?",
@@ -68,7 +68,7 @@ export const locales = {
     heroTitle1: "ශ්‍රී ලංකාවේ විශ්වසනීයතම",
     heroTitleHighlight: "එසැණින් පුවත්",
     heroTitle2: "සපයන්නා",
-    heroDesc: "අද Media ඔබ වෙත වේගවත්, තහවුරු කළ සහ ආකර්ශනීය පුවත් එසැණින් ගෙන එයි. අපගේ දෛනික වීඩියෝ වාර්තාකරණය සමඟ සැමවිටම යාවත්කාලීන වන්න.",
+    heroDesc: "අද Media ඔබ වෙත වේගවත්, තහවුරු කළ සහ නිවැරදි පුවත් එසැණින් ගෙන එයි. අපගේ දෛනික වීඩියෝ වාර්තාකරණය සමඟ සැමවිටම යාවත්කාලීන වන්න.",
     viewLatestReels: "නවතම පුවත් නරඹන්න",
     trustTitle: "අද Media විශ්වාස කළ හැක්කේ ඇයි?",
     trustDesc: "තොරතුරු වේගයෙන් පැතිරෙන සහ ව්‍යාජ පුවත් බහුල යුගයක, අද Media ලංකාව තුළ සත්‍යවාදී මාධ්‍යකරණයේ ප්‍රමුඛයෙකු ලෙස ක්‍රියා කරයි.",
@@ -79,15 +79,15 @@ export const locales = {
     trustPoint3Title: "පාරදෘශ්‍ය නිවැරදි කිරීම්",
     trustPoint3Desc: "යම් දෝෂයක් සිදුවුවහොත්, අපගේ වීඩියෝ සිරස්තලවල සහ පින් කරන ලද අදහස් (Pinned Comments) හරහා වහාම නිවැරදි තොරතුරු ප්‍රකාශයට පත් කෙරේ.",
     contactTitle: "අප හා සම්බන්ධ වන්න",
-    contactDesc: "ප්‍රවෘත්ති තොරතුරු හෝ ව්‍යාපාරික විමසීම් සඳහා අද Media කණ්ඩායම සමඟ සෘජුවම සම්බන්ධ වන්න.",
-    followOnFb: "එසැණින් ප්‍රවෘත්ති දැනගන්න දැන්ම Follow කරන්න",
+    contactDesc: "පුවත් සම්බන්ධ තොරතුරු හෝ ව්‍යාපාරික විමසීම් සඳහා අද Media කණ්ඩායම සමඟ සෘජුවම සම්බන්ධ වන්න.",
+    followOnFb: "එසැණින් පුවත් දැනගැනීමට අපගේ Facebook පිටුව Follow කරන්න",
     reelSectionTitle1: "අලුත්ම ",
     reelSectionTitleHighlight: "පුවත්",
     reelSectionDesc: "අපගේ දෛනික වීඩියෝ වාර්තා සෘජුවම අපගේ News Feed එකෙන් නරඹන්න.",
     loadingWidget: "Widget එක load වෙමින් පවතී...",
     formFirstName: "මුල් නම",
-    formLastName: "අවසන් නම",
-    formEmail: "විද්‍යුත් තැපෑල",
+    formLastName: "වාසගම",
+    formEmail: "ඊමේල් ලිපිනය",
     formSubject: "මාතෘකාව",
     formMessage: "පණිවිඩය",
     formSend: "පණිවිඩය යවන්න",
@@ -99,7 +99,7 @@ export const locales = {
     faqs: [
       {
         question: "අද Media යනු කුමක්ද?",
-        answer: "අද Media යනු ශ්‍රී ලංකාවේ විශ්වසනීයතම එසැණින් පුවත් සපයන්නා වන අතර වේගවත්, තහවුරු කළ සහ ආකර්ශනීය වීඩියෝ පුවත් ඔබ වෙත ගෙන එයි."
+        answer: "අද Media යනු ශ්‍රී ලංකාවේ විශ්වසනීයතම එසැණින් පුවත් සපයන්නා වන අතර වේගවත්, තහවුරු කළ සහ නිවැරදි වීඩියෝ පුවත් ඔබ වෙත ගෙන එයි."
       },
       {
         question: "අද Media පුවත් තහවුරු කරන්නේ කෙසේද?",
@@ -115,7 +115,7 @@ export const locales = {
       },
       {
         question: "මට අද Media වෙත පුවත් තොරතුරක් යැවිය හැක්කේ කෙසේද?",
-        answer: "පහත අපගේ 'සම්බන්ධ වන්න' කොටස හරහා හෝ contact@adamedia.lk වෙත සෘජුවම ඊමේල් කිරීමෙන් ඔබට අපව සම්බන්ධ කරගත හැක."
+        answer: "පහත දැක්වෙන අපගේ 'සම්බන්ධ වන්න' කොටස හරහා හෝ contact@adamedia.lk වෙත සෘජුවම ඊමේල් පණිවිඩයක් යොමු කිරීමෙන් ඔබට අප සම්බන්ධ කරගත හැක."
       }
     ]
   }

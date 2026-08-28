@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="si" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -29,7 +29,7 @@ export default function RootLayout({
               "@type": "NewsMediaOrganization",
               "name": "Ada Media",
               "url": "https://adamedia.lk",
-              "logo": "https://adamedia.lk/logo.png",
+              "logo": "https://adamedia.lk/Ada%20Media%20News.png",
               "sameAs": [
                 "https://www.facebook.com/AdaMediaLK/"
               ],

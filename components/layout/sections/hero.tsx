@@ -27,7 +27,7 @@ export const HeroSection = () => {
             <span> {t.tagline} </span>
           </Badge>
 
-          <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
+          <div className="max-w-screen-lg mx-auto text-center text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <h1>
               {t.heroTitle1}{" "}
               <span className="text-transparent px-2 bg-gradient-to-r from-[#ac0006] to-[#ff4d4d] bg-clip-text">
