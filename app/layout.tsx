@@ -6,6 +6,8 @@ import { Navbar } from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { LanguageProvider } from "./providers";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -70,6 +72,8 @@ export default function RootLayout({
           src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" 
           strategy="lazyOnload"
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
