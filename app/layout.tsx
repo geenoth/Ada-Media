@@ -34,6 +34,12 @@ export default function RootLayout({
               "name": "Ada Media",
               "url": "https://adamedia.lk",
               "logo": "https://adamedia.lk/Ada%20Media%20News.png",
+              "foundingDate": "2024",
+              "knowsAbout": ["Sri Lanka News", "Politics", "Economy", "Local News", "Global Events"],
+              "location": {
+                "@type": "Place",
+                "name": "Sri Lanka"
+              },
               "sameAs": [
                 "https://www.facebook.com/AdaMediaLK/"
               ],
@@ -62,7 +68,7 @@ export default function RootLayout({
           defer 
           crossOrigin="anonymous" 
           src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" 
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

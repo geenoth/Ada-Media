@@ -116,16 +116,71 @@ export default async function NewsPage({ params }: { params: { id: string } }) {
   // JSON-LD Structured Data
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
-    headline: title,
-    description: description,
-    image: [imageUrl],
-    datePublished: reel?.created_time || new Date().toISOString(),
-    author: [{
-        '@type': 'Organization',
-        name: 'Ada Media',
-        url: 'https://adamedia.lk'
-    }]
+    '@graph': [
+      {
+        '@type': 'NewsArticle',
+        headline: title,
+        description: description,
+        inLanguage: "si-LK",
+        image: [imageUrl],
+        datePublished: reel?.created_time || new Date().toISOString(),
+        dateModified: reel?.created_time || new Date().toISOString(),
+        author: {
+            '@type': 'Person',
+            name: 'Ada Media Reporter',
+            url: 'https://adamedia.lk'
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Ada Media',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://adamedia.lk/Ada%20Media%20News.png'
+          }
+        }
+      },
+      {
+        '@type': 'VideoObject',
+        name: title,
+        description: description,
+        inLanguage: "si-LK",
+        thumbnailUrl: imageUrl,
+        uploadDate: reel?.created_time || new Date().toISOString(),
+        contentUrl: reel?.permalink_url || `https://adamedia.lk/news/${id}`,
+        embedUrl: `https://adamedia.lk/news/${id}`,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Ada Media',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://adamedia.lk/Ada%20Media%20News.png'
+          }
+        }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://adamedia.lk"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "News Reels",
+            "item": "https://adamedia.lk/#reels"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": title,
+            "item": `https://adamedia.lk/news/${id}`
+          }
+        ]
+      }
+    ]
   };
 
   return (
@@ -139,6 +194,13 @@ export default async function NewsPage({ params }: { params: { id: string } }) {
       )}
       {/* Render the full homepage, the client component will read the URL to open the modal */}
       <Home />
+      {/* Hidden transcription for SEO bots */}
+      {reel && reel.description && (
+        <article className="sr-only" aria-hidden="true">
+          <time dateTime={reel.created_time}>{new Date(reel.created_time).toLocaleDateString('si-LK')}</time>
+          <div dangerouslySetInnerHTML={{ __html: reel.description.replace(/\n/g, '<br/>') }} />
+        </article>
+      )}
     </>
   );
 }
