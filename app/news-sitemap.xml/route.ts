@@ -91,7 +91,21 @@ export async function GET() {
     console.error("Error generating news sitemap:", error);
   }
   
-  return new NextResponse('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>', {
+  // Fallback to prevent Google Search Console "Missing XML tag" error if API completely fails
+  return new NextResponse(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://adamedia.lk</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Ada Media</news:name>
+        <news:language>si</news:language>
+      </news:publication>
+      <news:publication_date>${new Date().toISOString()}</news:publication_date>
+      <news:title><![CDATA[Ada Media News Hub]]></news:title>
+    </news:news>
+  </url>
+</urlset>`, {
     headers: { 'Content-Type': 'application/xml' }
   });
 }
