@@ -33,10 +33,12 @@ export async function GET() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">`;
 
-      if (data.data) {
+      if (data.data && data.data.length > 0) {
         // Google News only accepts articles from last 48 hours
         const twoDaysAgo = new Date();
         twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+
+        let addedCount = 0;
 
         data.data.forEach((reel: any) => {
           const reelDate = new Date(reel.created_time);
@@ -49,12 +51,31 @@ export async function GET() {
         <news:name>Ada Media</news:name>
         <news:language>si</news:language>
       </news:publication>
-      <news:publication_date>${reel.created_time}</news:publication_date>
+      <news:publication_date>${reelDate.toISOString()}</news:publication_date>
       <news:title><![CDATA[${(reel.description || 'Facebook Reel News').substring(0, 100).replace(/[\n\r]+/g, ' ')}]]></news:title>
     </news:news>
   </url>`;
+            addedCount++;
           }
         });
+
+        // Fallback: If no reels in the last 48 hours, add the most recent one so the XML isn't completely empty.
+        // Google Search Console throws a "Missing XML tag" error if a sitemap has 0 <url> tags.
+        if (addedCount === 0 && data.data[0]) {
+          const reel = data.data[0];
+          xml += `
+  <url>
+    <loc>https://adamedia.lk/news/${reel.id}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>Ada Media</news:name>
+        <news:language>si</news:language>
+      </news:publication>
+      <news:publication_date>${new Date(reel.created_time).toISOString()}</news:publication_date>
+      <news:title><![CDATA[${(reel.description || 'Facebook Reel News').substring(0, 100).replace(/[\n\r]+/g, ' ')}]]></news:title>
+    </news:news>
+  </url>`;
+        }
       }
 
       xml += `
