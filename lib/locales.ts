@@ -29,8 +29,13 @@ export const locales = {
     formLastName: "Last Name",
     formEmail: "Email",
     formSubject: "Subject",
+    subjectNewsTip: "News Tip",
+    subjectBusinessInquiry: "Business Inquiry",
+    subjectFeedback: "Feedback",
+    subjectOther: "Other",
     formMessage: "Message",
     formSend: "Send message",
+    formSuccessMessage: "Message sent successfully! We will get back to you soon.",
     footerQuickLinks: "Quick Links",
     footerLocation: "Colombo, Sri Lanka",
     footerRights: "All rights reserved.",
@@ -68,29 +73,34 @@ export const locales = {
     heroTitle1: "ශ්‍රී ලංකාවේ විශ්වසනීයතම",
     heroTitleHighlight: "එසැණින් පුවත්",
     heroTitle2: "සපයන්නා",
-    heroDesc: "අද Media ඔබ වෙත වේගවත්, තහවුරු කළ සහ නිවැරදි පුවත් එසැණින් ගෙන එයි. අපගේ දෛනික වීඩියෝ වාර්තාකරණය සමඟ සැමවිටම යාවත්කාලීන වන්න.",
+    heroDesc: "අද Media වේගවත්, තහවුරු කළ සහ නිවැරදි පුවත් එසැණින් ඉදිරිපත් කරයි. දෛනික වීඩියෝ වාර්තාකරණය සමඟින් නිරතුරුවම update වන්න.",
     viewLatestReels: "නවතම පුවත් නරඹන්න",
     trustTitle: "අද Media විශ්වාස කළ හැක්කේ ඇයි?",
     trustDesc: "තොරතුරු වේගයෙන් පැතිරෙන සහ ව්‍යාජ පුවත් බහුල යුගයක, අද Media ලංකාව තුළ සත්‍යවාදී මාධ්‍යකරණයේ ප්‍රමුඛයෙකු ලෙස ක්‍රියා කරයි.",
     trustPoint1Title: "දැඩි කරුණු තහවුරු කිරීම",
     trustPoint1Desc: "නිෂ්පාදනයට පෙර සෑම ප්‍රවෘත්තියක්ම ස්වාධීන මූලාශ්‍ර කිහිපයක් ඔස්සේ පරීක්ෂා කර තහවුරු කරනු ලබයි.",
     trustPoint2Title: "සාවද්‍ය මාතෘකා රහිත මාධ්‍යකරණය",
-    trustPoint2Desc: "අතිශයෝක්තියෙන් තොරව, නිවැරදි සිංහල මාතෘකා සහ වෛෂයික විස්තර සහිතව අපගේ පුවත් ඉදිරිපත් කෙරේ.",
+    trustPoint2Desc: "අතිශයෝක්තියෙන් තොරව, නිවැරදි සිංහල මාතෘකා සහ වෛෂයික විස්තර සහිතව පුවත් ඉදිරිපත් කෙරේ.",
     trustPoint3Title: "පාරදෘශ්‍ය නිවැරදි කිරීම්",
-    trustPoint3Desc: "යම් දෝෂයක් සිදුවුවහොත්, අපගේ වීඩියෝ සිරස්තලවල සහ පින් කරන ලද අදහස් (Pinned Comments) හරහා වහාම නිවැරදි තොරතුරු ප්‍රකාශයට පත් කෙරේ.",
-    contactTitle: "අප හා සම්බන්ධ වන්න",
+    trustPoint3Desc: "යම් දෝෂයක් සිදුවුවහොත්, වීඩියෝ සිරස්තලවල සහ පින් කරන ලද අදහස් (Pinned Comments) හරහා වහාම නිවැරදි තොරතුරු ප්‍රකාශයට පත් කෙරේ.",
+    contactTitle: "සම්බන්ධ වන්න",
     contactDesc: "පුවත් සම්බන්ධ තොරතුරු හෝ ව්‍යාපාරික විමසීම් සඳහා අද Media කණ්ඩායම සමඟ සෘජුවම සම්බන්ධ වන්න.",
-    followOnFb: "එසැණින් පුවත් දැනගැනීමට අපගේ Facebook පිටුව Follow කරන්න",
+    followOnFb: "එසැණින් පුවත් දැනගැනීමට Facebook පිටුව Follow කරන්න",
     reelSectionTitle1: "අලුත්ම ",
     reelSectionTitleHighlight: "පුවත්",
-    reelSectionDesc: "අපගේ දෛනික වීඩියෝ වාර්තා සෘජුවම අපගේ News Feed එකෙන් නරඹන්න.",
+    reelSectionDesc: "දෛනික වීඩියෝ වාර්තා සෘජුවම News Feed එකෙන් නරඹන්න.",
     loadingWidget: "Widget එක load වෙමින් පවතී...",
     formFirstName: "මුල් නම",
     formLastName: "වාසගම",
     formEmail: "ඊමේල් ලිපිනය",
     formSubject: "මාතෘකාව",
+    subjectNewsTip: "පුවත් තොරතුරු",
+    subjectBusinessInquiry: "ව්‍යාපාරික විමසීම්",
+    subjectFeedback: "අදහස් හා යෝජනා",
+    subjectOther: "වෙනත්",
     formMessage: "පණිවිඩය",
     formSend: "පණිවිඩය යවන්න",
+    formSuccessMessage: "පණිවිඩය සාර්ථකව යවන ලදී! ඉක්මනින් සම්බන්ධ කරගන්නෙමු.",
     footerQuickLinks: "ඉක්මන් සබැඳි",
     footerLocation: "කොළඹ, ශ්‍රී ලංකාව",
     footerRights: "සියලුම හිමිකම් ඇවිරිණි.",
@@ -99,23 +109,23 @@ export const locales = {
     faqs: [
       {
         question: "අද Media යනු කුමක්ද?",
-        answer: "අද Media යනු ශ්‍රී ලංකාවේ විශ්වසනීයතම එසැණින් පුවත් සපයන්නා වන අතර වේගවත්, තහවුරු කළ සහ නිවැරදි වීඩියෝ පුවත් ඔබ වෙත ගෙන එයි."
+        answer: "අද Media යනු ශ්‍රී ලංකාවේ විශ්වසනීයතම එසැණින් පුවත් සපයන්නා වන අතර වේගවත්, තහවුරු කළ සහ නිවැරදි වීඩියෝ පුවත් ගෙන එයි."
       },
       {
         question: "අද Media පුවත් තහවුරු කරන්නේ කෙසේද?",
         answer: "නිෂ්පාදනයට පෙර සෑම ප්‍රවෘත්තියක්ම ස්වාධීන මූලාශ්‍ර කිහිපයක් ඔස්සේ පරීක්ෂා කර තහවුරු කරනු ලබයි."
       },
       {
-        question: "ඔබ සාවද්‍ය (Clickbait) මාතෘකා භාවිතා කරනවාද?",
-        answer: "නැත. අතිශයෝක්තියෙන් තොරව, නිවැරදි සිංහල මාතෘකා සහ වෛෂයික විස්තර සහිතව අපගේ පුවත් ඉදිරිපත් කෙරේ."
+        question: "සාවද්‍ය (Clickbait) මාතෘකා භාවිතා කරනවාද?",
+        answer: "නැත. අතිශයෝක්තියෙන් තොරව, නිවැරදි සිංහල මාතෘකා සහ වෛෂයික විස්තර සහිතව පුවත් ඉදිරිපත් කෙරේ."
       },
       {
         question: "වාර්තාවක දෝෂයක් ඇත්නම් කුමක් සිදුවේද?",
-        answer: "අපගේ වීඩියෝ සිරස්තලවල සහ පින් කරන ලද අදහස් (Pinned Comments) හරහා වහාම නිවැරදි තොරතුරු ප්‍රකාශයට පත් කෙරේ."
+        answer: "වීඩියෝ සිරස්තලවල සහ පින් කරන ලද අදහස් (Pinned Comments) හරහා වහාම නිවැරදි තොරතුරු ප්‍රකාශයට පත් කෙරේ."
       },
       {
-        question: "මට අද Media වෙත පුවත් තොරතුරක් යැවිය හැක්කේ කෙසේද?",
-        answer: "පහත දැක්වෙන අපගේ 'සම්බන්ධ වන්න' කොටස හරහා හෝ contact@adamedia.lk වෙත සෘජුවම ඊමේල් පණිවිඩයක් යොමු කිරීමෙන් ඔබට අප සම්බන්ධ කරගත හැක."
+        question: "අද Media වෙත පුවත් තොරතුරක් යැවිය හැක්කේ කෙසේද?",
+        answer: "පහත දැක්වෙන 'සම්බන්ධ වන්න' කොටස හරහා හෝ contact@adamedia.lk වෙත සෘජුවම ඊමේල් පණිවිඩයක් යොමු කිරීමෙන් සම්බන්ධ කරගත හැක."
       }
     ]
   }

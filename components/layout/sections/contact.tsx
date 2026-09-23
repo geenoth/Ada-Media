@@ -1,4 +1,6 @@
 "use client";
+import React from "react";
+import { CheckCircle2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -38,6 +40,8 @@ const formSchema = z.object({
 });
 
 export const ContactSection = () => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isSuccess, setIsSuccess] = React.useState(false);
   const { language } = useLanguage();
   const t = locales[language];
   const form = useForm<z.infer<typeof formSchema>>({
@@ -51,13 +55,37 @@ export const ContactSection = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const { firstName, lastName, email, subject, message } = values;
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    setIsSuccess(false);
 
-    const mailToLink = `mailto:contact@adamedia.lk?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "51717cbd-25a4-4bdb-8094-5fac6282a262",
+          subject: `New Inquiry from Ada Media: ${values.subject}`, // This sets the actual Email subject line
+          "Inquiry Type": values.subject, // This ensures it shows up in the body of the email
+          name: `${values.firstName} ${values.lastName}`,
+          email: values.email,
+          message: values.message,
+        }),
+      });
 
-    window.location.href = mailToLink;
+      const result = await response.json();
+      if (result.success) {
+        setIsSuccess(true);
+        form.reset();
+      }
+    } catch (error) {
+      console.error("Form submission error", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -73,7 +101,10 @@ export const ContactSection = () => {
       </div>
 
       <div className="max-w-5xl mx-auto">
-        <Card className="bg-muted/60 dark:bg-card shadow-lg">
+        <Card 
+          className="bg-muted/60 dark:bg-card shadow-none [&_.text-destructive]:!text-[#ac0006]"
+          style={{ "--ring": "358 100% 33.7%" } as React.CSSProperties}
+        >
           <CardHeader className="text-primary text-2xl" />
           <CardContent>
             <Form {...form}>
@@ -89,7 +120,7 @@ export const ContactSection = () => {
                       <FormItem className="w-full">
                         <FormLabel>{t.formFirstName}</FormLabel>
                         <FormControl>
-                          <Input placeholder="John" {...field} />
+                          <Input placeholder="John" className="text-base md:text-sm" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -102,7 +133,7 @@ export const ContactSection = () => {
                       <FormItem className="w-full">
                         <FormLabel>{t.formLastName}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Doe" {...field} />
+                          <Input placeholder="Doe" className="text-base md:text-sm" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -120,7 +151,8 @@ export const ContactSection = () => {
                         <FormControl>
                           <Input
                             type="email"
-                            placeholder="contact@adamedia.lk"
+                            placeholder="johndoe@gmail.com"
+                            className="text-base md:text-sm"
                             {...field}
                           />
                         </FormControl>
@@ -140,21 +172,21 @@ export const ContactSection = () => {
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="text-base md:text-sm">
                               <SelectValue placeholder={t.formSubject} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
                             <SelectItem value="News Tip">
-                              News Tip
+                              {t.subjectNewsTip}
                             </SelectItem>
                             <SelectItem value="Business Inquiry">
-                              Business Inquiry
+                              {t.subjectBusinessInquiry}
                             </SelectItem>
                             <SelectItem value="Feedback">
-                              Feedback
+                              {t.subjectFeedback}
                             </SelectItem>
-                            <SelectItem value="Other">Other</SelectItem>
+                            <SelectItem value="Other">{t.subjectOther}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -174,7 +206,7 @@ export const ContactSection = () => {
                           <Textarea
                             rows={5}
                             placeholder="..."
-                            className="resize-none"
+                            className="resize-none text-base md:text-sm"
                             {...field}
                           />
                         </FormControl>
@@ -185,7 +217,20 @@ export const ContactSection = () => {
                   />
                 </div>
 
-                <Button className="mt-4 bg-[#ac0006] hover:bg-[#8f0909] text-white">{t.formSend}</Button>
+                <Button 
+                  disabled={isSubmitting} 
+                  className="mt-4 bg-[#ac0006] hover:bg-[#8f0909] text-white"
+                >
+                  {isSubmitting ? "Sending..." : t.formSend}
+                </Button>
+                {isSuccess && (
+                  <div className="py-2.5 px-4 rounded-md border border-[#ac0006]/20 bg-[#ac0006]/5 text-[#ac0006] text-center">
+                    <p className="font-medium text-sm">
+                      <CheckCircle2 className="w-4 h-4 inline-block relative -top-[1px] mr-1.5" />
+                      {t.formSuccessMessage}
+                    </p>
+                  </div>
+                )}
               </form>
             </Form>
           </CardContent>
