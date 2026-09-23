@@ -272,13 +272,19 @@ export const ReelFeed = () => {
             <span className="text-sm text-muted-foreground mt-2 block">Please check if the Facebook Page Access Token is valid.</span>
           </div>
         ) : reels.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
+          <main className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
             {reels.map((reel) => (
-              <div
+              <article
                 key={reel.id}
-                onClick={() => setSelectedReel(reel)}
-                className="group cursor-pointer relative rounded-2xl overflow-hidden border border-[#ac0006]/20 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-[#ac0006]/60 hover:shadow-[0_0_40px_-15px_rgba(172,0,6,0.5)] flex flex-col aspect-[9/16]"
+                className="group relative rounded-2xl overflow-hidden border border-[#ac0006]/20 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-[#ac0006]/60 hover:shadow-[0_0_40px_-15px_rgba(172,0,6,0.5)] flex flex-col aspect-[9/16]"
               >
+                {/* Semantic HTML internal link for crawlers */}
+                <a 
+                  href={`/news/${reel.id}`} 
+                  className="absolute inset-0 z-20 cursor-pointer"
+                  onClick={(e) => { e.preventDefault(); setSelectedReel(reel); }}
+                  aria-label={truncateText(reel.description || "Facebook Reel", 8)}
+                />
                 {!loadedImages[reel.id] && (
                   <Skeleton className="absolute inset-0 w-full h-full rounded-2xl" />
                 )}
@@ -298,18 +304,18 @@ export const ReelFeed = () => {
                 </div>
 
                 <div className="absolute bottom-0 left-0 w-full p-5 bg-gradient-to-t from-black/90 via-black/60 to-transparent pointer-events-none">
-                  <p className="text-white text-sm sm:text-base font-medium drop-shadow-lg">
+                  <h3 className="text-white text-sm sm:text-base font-medium drop-shadow-lg m-0">
                     {truncateText(reel.description || "Facebook Reel", 8)}
-                  </p>
+                  </h3>
                 </div>
-              </div>
+              </article>
             ))}
             
             {/* Show skeletons when fetching next page */}
             {loadingMore && [...Array(4)].map((_, i) => (
               <Skeleton key={`loading-more-${i}`} className="w-full aspect-[9/16] rounded-2xl animate-in fade-in duration-500" />
             ))}
-          </div>
+          </main>
         ) : (
           <div className="text-center text-muted-foreground py-12">
             {t.loadingWidget || "No reels available at the moment."}
