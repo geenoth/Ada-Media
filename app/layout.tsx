@@ -9,8 +9,12 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://adamedia.lk"),
   title: "Ada Media | Real-Time News",
   description: "Sri Lanka's Most Trusted Real-Time News Provider. Watch our highly produced daily video reports.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
