@@ -3,6 +3,7 @@
 import { useLanguage } from "@/app/providers";
 import { locales } from "@/lib/locales";
 import { useEffect, useState, useRef } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Reel = {
   id: string;
@@ -48,6 +49,11 @@ export const ReelFeed = () => {
   const [nextPageCursor, setNextPageCursor] = useState<string | null>(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [selectedReel, setSelectedReel] = useState<Reel | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+
+  const handleImageLoad = (id: string) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }));
+  };
 
   // Custom Player States
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -257,13 +263,7 @@ export const ReelFeed = () => {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-screen-xl mx-auto">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="rounded-2xl overflow-hidden border border-[#ac0006]/10 bg-card/20 backdrop-blur-sm flex flex-col aspect-[9/16] animate-pulse relative">
-                <div className="w-full h-full bg-muted/10 dark:bg-muted/20" />
-                <div className="absolute bottom-0 left-0 w-full p-5 bg-gradient-to-t from-black/80 to-transparent flex flex-col gap-2">
-                  <div className="h-4 bg-white/20 rounded-md w-3/4" />
-                  <div className="h-4 bg-white/20 rounded-md w-1/2" />
-                </div>
-              </div>
+              <Skeleton key={i} className="w-full aspect-[9/16] rounded-2xl" />
             ))}
           </div>
         ) : error ? (
@@ -279,10 +279,14 @@ export const ReelFeed = () => {
                 onClick={() => setSelectedReel(reel)}
                 className="group cursor-pointer relative rounded-2xl overflow-hidden border border-[#ac0006]/20 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-[#ac0006]/60 hover:shadow-[0_0_40px_-15px_rgba(172,0,6,0.5)] flex flex-col aspect-[9/16]"
               >
+                {!loadedImages[reel.id] && (
+                  <Skeleton className="absolute inset-0 w-full h-full rounded-2xl" />
+                )}
                 <img
                   src={getHighResPicture(reel)}
                   alt={reel.description || "Reel Thumbnail"}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${loadedImages[reel.id] ? 'opacity-100' : 'opacity-0'}`}
+                  onLoad={() => handleImageLoad(reel.id)}
                 />
 
                 <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors duration-300">
@@ -299,6 +303,11 @@ export const ReelFeed = () => {
                   </p>
                 </div>
               </div>
+            ))}
+            
+            {/* Show skeletons when fetching next page */}
+            {loadingMore && [...Array(4)].map((_, i) => (
+              <Skeleton key={`loading-more-${i}`} className="w-full aspect-[9/16] rounded-2xl animate-in fade-in duration-500" />
             ))}
           </div>
         ) : (
